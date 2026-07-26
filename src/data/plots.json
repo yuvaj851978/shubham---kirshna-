@@ -1,0 +1,117 @@
+[
+  {
+    "id": 1,
+    "title": "Sunrise Valley Estate",
+    "location": "Lonavala, Maharashtra",
+    "address": "123 Sunrise Blvd, Lonavala, MH 410401",
+    "price": 14500000,
+    "size": 2500,
+    "type": "Residential",
+    "status": "Available",
+    "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "description": "A beautiful 2500 sq ft residential plot in the highly sought-after hills of Lonavala. Ready for development with all utilities present.",
+    "lat": 18.7481,
+    "lng": 73.4072,
+    "landmarks": ["Lonavala Lake (1 km)", "Tiger Point (3 km)"],
+    "youtubeId": "dQw4w9WgXcQ"
+  },
+  {
+    "id": 2,
+    "title": "Bandra Commercial Hub",
+    "location": "Bandra Kurla Complex, Mumbai",
+    "address": "Plot C-45, BKC, Mumbai, MH 400051",
+    "price": 85000000,
+    "size": 5000,
+    "type": "Commercial",
+    "status": "Sold Out",
+    "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "description": "Prime commercial real estate located in the heart of Mumbai's business district. Perfect for high-rise office building or luxury retail.",
+    "lat": 19.0660,
+    "lng": 72.8631,
+    "landmarks": ["BKC Metro Station (0.2 km)", "Jio World Centre (0.5 km)"],
+    "youtubeId": "aqz-KE-bpKQ"
+  },
+  {
+    "id": 3,
+    "title": "Whitefield Retreat",
+    "location": "Whitefield, Bangalore",
+    "address": "78 ITPL Main Rd, Whitefield, BLR 560066",
+    "price": 23200000,
+    "size": 1800,
+    "type": "Residential",
+    "status": "Available",
+    "image": "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "description": "Scenic plot in the booming IT corridor of Bangalore. Quiet neighborhood ideal for building a premium villa.",
+    "lat": 12.9698,
+    "lng": 77.7499,
+    "landmarks": ["ITPL Tech Park (1 km)", "Forum Mall (2 km)"],
+    "youtubeId": "tO01J-M3g0U"
+  },
+  {
+    "id": 4,
+    "title": "Gurugram Industrial Lot A",
+    "location": "Manesar, Gurugram",
+    "address": "200 Factory Rd, IMT Manesar, HR 122051",
+    "price": 38500000,
+    "size": 10000,
+    "type": "Industrial",
+    "status": "Available",
+    "image": "https://images.unsplash.com/photo-1580982334812-32b005e83c21?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1580982334812-32b005e83c21?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "description": "Large industrial plot with easy highway access. Zoned for manufacturing and warehousing.",
+    "lat": 28.3523,
+    "lng": 76.9387,
+    "landmarks": ["NH48 Highway (1 km)", "Logistics Park (0.5 km)"],
+    "youtubeId": "LXb3EKWsInQ"
+  },
+  {
+    "id": 5,
+    "title": "Koregaon Park Elite",
+    "location": "Koregaon Park, Pune",
+    "address": "Lane 7, Koregaon Park, Pune, MH 411001",
+    "price": 42000000,
+    "size": 3200,
+    "type": "Residential",
+    "status": "Available",
+    "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "description": "Ultra-premium residential plot in Pune's most affluent neighborhood. Surrounded by greenery and high-end cafes.",
+    "lat": 18.5362,
+    "lng": 73.8939,
+    "landmarks": ["Osho Ashram (0.5 km)", "German Bakery (1 km)"],
+    "youtubeId": "aqz-KE-bpKQ"
+  },
+  {
+    "id": 6,
+    "title": "Okhla Phase II Lot",
+    "location": "Okhla, New Delhi",
+    "address": "Phase II, Okhla Industrial Estate, ND 110020",
+    "price": 65000000,
+    "size": 8000,
+    "type": "Industrial",
+    "status": "Available",
+    "image": "https://images.unsplash.com/photo-1580982334812-32b005e83c21?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1580982334812-32b005e83c21?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    ],
+    "description": "Heavy industrial zoning available in Okhla. Excellent connectivity to major freight corridors.",
+    "lat": 28.5273,
+    "lng": 77.2730,
+    "landmarks": ["Okhla Metro (1.5 km)", "Apollo Hospital (2 km)"],
+    "youtubeId": "LXb3EKWsInQ"
+  }
+]
