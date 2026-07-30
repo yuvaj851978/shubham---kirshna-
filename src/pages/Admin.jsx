@@ -49,6 +49,7 @@ export default function Admin() {
     image: '',
     images: [],
     youtubeId: '',
+    cardMediaType: 'images',
     lat: '',
     lng: '',
     description: '',
@@ -151,7 +152,7 @@ export default function Admin() {
       setView('dashboard');
       setEditingId(null);
       setFormData({
-        title: '', price: '', location: '', address: '', type: 'Residential', size: '', status: 'Available', image: '', youtubeId: '', lat: '', lng: '', description: '', landmarks: '', contactNumber: ''
+        title: '', price: '', location: '', address: '', type: 'Residential', size: '', status: 'Available', image: '', images: [], youtubeId: '', cardMediaType: 'images', lat: '', lng: '', description: '', landmarks: '', contactNumber: ''
       });
     }, 2000);
   };
@@ -240,7 +241,7 @@ export default function Admin() {
           <p style={{ color: 'var(--text-muted)' }}>Step {step} of 3</p>
         </div>
         <button onClick={() => { setView('dashboard'); setStep(1); setEditingId(null); setFormData({
-        title: '', price: '', location: '', address: '', type: 'Residential', size: '', status: 'Available', image: '', youtubeId: '', lat: '', lng: '', description: '', landmarks: '', contactNumber: ''
+        title: '', price: '', location: '', address: '', type: 'Residential', size: '', status: 'Available', image: '', images: [], youtubeId: '', cardMediaType: 'images', lat: '', lng: '', description: '', landmarks: '', contactNumber: ''
       }); }} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           Cancel
         </button>
@@ -435,8 +436,15 @@ export default function Admin() {
                   </div>
                 </div>
                 <div className="form-group" style={{ marginBottom: '1rem' }}>
-                  <label>YouTube Video ID</label>
+                  <label>YouTube Video ID (For both full video & card media)</label>
                   <input type="text" name="youtubeId" value={formData.youtubeId} onChange={handleChange} placeholder="e.g. dQw4w9WgXcQ" />
+                </div>
+                <div className="form-group" style={{ marginBottom: '1rem' }}>
+                  <label>Card Display Media</label>
+                  <select name="cardMediaType" value={formData.cardMediaType} onChange={handleChange}>
+                    <option value="images">Image Slider (Default)</option>
+                    <option value="youtube_shorts">YouTube Shorts</option>
+                  </select>
                 </div>
                 <div className="form-group" style={{ marginBottom: '1rem' }}>
                   <label>Full Description</label>

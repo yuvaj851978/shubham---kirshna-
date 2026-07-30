@@ -5,6 +5,7 @@ import { MapPin, Maximize, ArrowRight, Layers, Search } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getPlots } from '../utils/plots';
 import PlotSlider from '../components/PlotSlider';
+import PlotCardMedia from '../components/PlotCardMedia';
 import L from 'leaflet';
 
 // Fix Leaflet icon issue
@@ -159,8 +160,8 @@ export default function Plots() {
               className="plot-card"
               onClick={() => navigate(`/properties/${plot.id}`)}
             >
-              <div className="plot-card-img-wrap">
-                <PlotSlider images={plot.images} singleImage={plot.image} title={plot.title} />
+              <div className={`plot-card-img-wrap ${plot.cardMediaType === 'youtube_shorts' ? 'is-short' : ''}`}>
+                <PlotCardMedia plot={plot} />
                 <span className={`plot-status ${plot.status === 'Available' ? 'available' : ''}`}>
                   {plot.status}
                 </span>

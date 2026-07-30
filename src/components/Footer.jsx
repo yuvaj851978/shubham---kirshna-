@@ -52,15 +52,19 @@ export default function Footer() {
           <div>
             <h4 className="footer-heading">Contact Us</h4>
             <ul className="footer-links">
-              <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.7)' }}>
-                <Phone size={16} /> (555) 123-4567
+              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', color: 'rgba(255,255,255,0.7)' }}>
+                <Phone size={16} style={{ flexShrink: 0, marginTop: '4px' }} />
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <span>Shalin Shukla</span>
+                  <span>9201135883, 7747013503</span>
+                </div>
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.7)' }}>
-                <Mail size={16} /> info@primeplots.com
+                <Mail size={16} /> krishnamrealities@gmail.com
               </li>
               <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', color: 'rgba(255,255,255,0.7)', marginTop: '0.5rem' }}>
                 <MapPin size={16} style={{ flexShrink: 0, marginTop: '4px' }} /> 
-                123 Real Estate Blvd, Suite 100, Mumbai, MH 400001
+                Raipur, Chhattishgarh
               </li>
             </ul>
           </div>

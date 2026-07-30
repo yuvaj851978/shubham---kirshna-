@@ -40,8 +40,8 @@ export default function Contact() {
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--accent-dark)' }}>Head Office</h4>
-                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>123 Real Estate Blvd, Suite 100<br/>Mumbai, Maharashtra 400001<br/>India</p>
+                  <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--accent-dark)' }}>Office</h4>
+                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>Raipur, Chhattishgarh</p>
                 </div>
               </div>
 
@@ -51,7 +51,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--accent-dark)' }}>Phone</h4>
-                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>(555) 123-4567<br/>(555) 987-6543</p>
+                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>Shalin Shukla<br/>9201135883, 7747013503</p>
                 </div>
               </div>
 
@@ -61,7 +61,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--accent-dark)' }}>Email</h4>
-                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>info@krishnamrealities.com<br/>sales@krishnamrealities.com</p>
+                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>krishnamrealities@gmail.com</p>
                 </div>
               </div>
 

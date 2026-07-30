@@ -34,7 +34,7 @@ export default function PlotDetail() {
 
   const getYouTubeId = (url) => {
     if (!url) return null;
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
     const match = url.match(regExp);
     return (match && match[2].length === 11) ? match[2] : url; 
   };
@@ -228,9 +228,9 @@ export default function PlotDetail() {
                 <span style={{ color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Building size={18} /> Type</span>
                 <span style={{ fontWeight: 600 }}>{plot.type}</span>
               </div>
-              <div className="spec-item" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><MapPin size={18} /> Zone</span>
-                <span style={{ fontWeight: 600 }}>{plot.location}</span>
+              <div className="spec-item" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
+                <span style={{ color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}><MapPin size={18} /> Zone</span>
+                <span style={{ fontWeight: 600, textAlign: 'right' }}>{plot.location}</span>
               </div>
             </div>
 

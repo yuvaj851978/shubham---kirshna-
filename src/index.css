@@ -454,8 +454,13 @@ button {
 
 .plot-card-img-wrap {
   position: relative;
-  height: 180px;
+  height: 220px;
   overflow: hidden;
+  transition: var(--transition);
+}
+
+.plot-card-img-wrap.is-short {
+  /* No height override, let it be letterboxed so grid stays uniform */
 }
 
 .plot-card-img {

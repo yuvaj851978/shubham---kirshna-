@@ -4,6 +4,7 @@ import { Search, MapPin, IndianRupee, LayoutGrid, ShieldCheck, Map, ArrowRight, 
 import { useNavigate } from 'react-router-dom';
 import { getPlots } from '../utils/plots';
 import Footer from '../components/Footer';
+import PlotCardMedia from '../components/PlotCardMedia';
 import PlotSlider from '../components/PlotSlider';
 
 export default function Home() {
@@ -64,8 +65,8 @@ export default function Home() {
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="hero-content"
         >
-          <h1 className="hero-title">Exclusive Land. Endless Potential.</h1>
-          <p className="hero-subtitle">Curated premium plots for visionaries, developers, and those seeking the extraordinary.</p>
+          <h1 className="hero-title">Apni Zameen, Apna Kal</h1>
+          <p className="hero-subtitle">"Your vision, our expertise. Join Krishnam Realities for early access to new properties and smart investment insights."</p>
           
           <motion.form 
             className="search-bar-container" 
@@ -225,8 +226,8 @@ export default function Home() {
                   className="plot-card"
                   onClick={() => navigate(`/properties/${plot.id}`)}
                 >
-                  <div className="plot-card-img-wrap">
-                    <PlotSlider images={plot.images} singleImage={plot.image} title={plot.title} />
+                  <div className={`plot-card-img-wrap ${plot.cardMediaType === 'youtube_shorts' ? 'is-short' : ''}`}>
+                    <PlotCardMedia plot={plot} />
                     <span className={`plot-status ${plot.status === 'Available' ? 'available' : ''}`}>
                       {plot.status}
                     </span>

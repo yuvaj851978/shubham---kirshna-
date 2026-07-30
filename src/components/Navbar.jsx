@@ -26,7 +26,7 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
       className={`navbar ${scrolled ? 'shadow-md' : ''}`}
     >
-      <div className="container navbar-container">
+      <div className="navbar-container" style={{ padding: '0 4rem', width: '100%' }}>
         <Link to="/" className="logo" style={{ display: 'flex', alignItems: 'center' }}>
           <img src="/logo.png" alt="Krishnam Realities" style={{ height: '80px', objectFit: 'contain' }} />
         </Link>
@@ -36,9 +36,6 @@ export default function Navbar() {
           <Link to="/properties" className={`nav-link ${location.pathname === '/properties' ? 'active' : ''}`}>Properties</Link>
           <Link to="/about" className="nav-link">About</Link>
           <Link to="/contact" className="nav-link">Contact</Link>
-          <button className="btn" style={{ background: 'var(--accent-gold)', color: 'white', padding: '0.6rem 1.25rem' }}>
-            List Your Property <ArrowRight size={18} />
-          </button>
         </div>
       </div>
     </motion.nav>
