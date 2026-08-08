@@ -70,7 +70,7 @@ export default function Plots() {
     : [20.5937, 78.9629];
 
   return (
-    <div className="plots-page">
+    <div className="plots-page" style={{ position: 'relative', overflow: 'hidden' }}>
       {/* Left Side (Map View) - Stays sticky while list scrolls */}
       <div className="plots-map-container" style={{ position: 'sticky', top: '80px', height: 'calc(100vh - 80px)' }}>
         <button 
@@ -124,7 +124,7 @@ export default function Plots() {
       <div className="plots-sidebar">
         <div className="plots-filters">
           <div className="filter-header">
-            <h3>Properties ({filteredPlots.length})</h3>
+            <h3>Agricultural Land ({filteredPlots.length})</h3>
           </div>
           <div className="filter-row">
             <select 
@@ -143,9 +143,10 @@ export default function Plots() {
               onChange={(e) => setFilter({...filter, type: e.target.value})}
             >
               <option value="">All Types</option>
-              <option value="Residential">Residential</option>
-              <option value="Commercial">Commercial</option>
-              <option value="Industrial">Industrial</option>
+              <option value="Farmland">Farmland</option>
+              <option value="Agricultural">Agricultural</option>
+              <option value="Orchard">Orchard</option>
+              <option value="Plantation">Plantation</option>
             </select>
           </div>
         </div>

@@ -4,8 +4,25 @@ import { MapPin, Mail, Phone } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="container">
+    <footer className="footer" style={{ position: 'relative', overflow: 'hidden' }}>
+      {/* Nature Overlay (Trees & Grass) */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', pointerEvents: 'none', zIndex: 0, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', opacity: 0.3 }}>
+        
+        {/* Grass Background Layer */}
+        <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '120px', backgroundImage: 'url(/grass_transparent.png)', backgroundRepeat: 'repeat-x', backgroundSize: 'auto 100%', zIndex: 1 }}></div>
+        
+        {/* Left Tree */}
+        <div className="swaying-tree tree-left" style={{ position: 'relative', zIndex: 2, marginLeft: '-2%', transformOrigin: 'bottom center', marginBottom: '-20px' }}>
+          <img src="/tree_transparent.png" alt="Nature Tree" style={{ height: '350px', objectFit: 'contain' }} />
+        </div>
+
+        {/* Right Tree */}
+        <div className="swaying-tree tree-right" style={{ position: 'relative', zIndex: 2, marginRight: '-2%', transformOrigin: 'bottom center', marginBottom: '-20px' }}>
+          <img src="/tree_transparent.png" alt="Nature Tree" style={{ height: '400px', objectFit: 'contain', transform: 'scaleX(-1)' }} />
+        </div>
+      </div>
+
+      <div className="container" style={{ position: 'relative', zIndex: 10 }}>
         <div className="footer-grid">
           <div>
             <Link to="/" className="footer-logo" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '0px' }}>

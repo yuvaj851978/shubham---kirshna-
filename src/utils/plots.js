@@ -1,6 +1,8 @@
 import defaultPlots from '../data/plots.json';
 
-// Initialize local storage on first load
+// Force update for new theme
+localStorage.removeItem('propertyListings');
+
 if (!localStorage.getItem('propertyListings')) {
   localStorage.setItem('propertyListings', JSON.stringify(defaultPlots));
 }

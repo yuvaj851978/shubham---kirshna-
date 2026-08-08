@@ -6,6 +6,7 @@ import { getPlots } from '../utils/plots';
 import Footer from '../components/Footer';
 import PlotCardMedia from '../components/PlotCardMedia';
 import PlotSlider from '../components/PlotSlider';
+import heroBgImage from '../assets/land.png';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -49,12 +50,13 @@ export default function Home() {
   };
 
   return (
-    <div className="home">
+    <div className="home" style={{ position: 'relative', overflow: 'hidden' }}>
+      
       {/* Hero Section */}
       <section className="hero">
         <img 
-          src="/background.png" 
-          alt="Premium Real Estate" 
+          src={heroBgImage} 
+          alt="Premium Agricultural Land" 
           className="hero-bg" 
         />
         <div className="hero-overlay"></div>
@@ -65,8 +67,8 @@ export default function Home() {
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="hero-content"
         >
-          <h1 className="hero-title">Apni Zameen, Apna Kal</h1>
-          <p className="hero-subtitle">"Your vision, our expertise. Join Krishnam Realities for early access to new properties and smart investment insights."</p>
+          <h1 className="hero-title">Invest in Land, Invest in Future</h1>
+          <p className="hero-subtitle">"Your vision, our expertise. Join Krishnam Realities for prime agricultural land and smart investment insights."</p>
           
           <motion.form 
             className="search-bar-container" 
@@ -118,9 +120,10 @@ export default function Home() {
                 onChange={(e) => setSearchParams({...searchParams, type: e.target.value})}
               >
                 <option value="">Property Type</option>
-                <option value="Residential">Residential</option>
-                <option value="Commercial">Commercial</option>
-                <option value="Industrial">Industrial</option>
+                <option value="Farmland">Farmland</option>
+                <option value="Agricultural">Agricultural</option>
+                <option value="Orchard">Orchard</option>
+                <option value="Plantation">Plantation</option>
               </select>
             </motion.div>
             
@@ -146,16 +149,21 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="home-section bg-light">
-        <div className="container">
+      <section className="home-section bg-light" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Creeper Vines Overlay */}
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', pointerEvents: 'none', zIndex: 0, display: 'flex', justifyContent: 'space-between', opacity: 0.8 }}>
+          <img src="/creeper_transparent.png" alt="Creeper Vine" style={{ width: '20vw', minWidth: '150px', objectFit: 'contain', transformOrigin: 'top center', marginTop: '-3%' }} />
+          <img src="/creeper_transparent.png" alt="Creeper Vine" style={{ width: '25vw', minWidth: '200px', objectFit: 'contain', transform: 'scaleX(-1)', transformOrigin: 'top center', marginTop: '-3%' }} />
+        </div>
+        <div className="container" style={{ position: 'relative', zIndex: 10 }}>
           <motion.div 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeInUp}
           >
-            <h2 className="section-title">The PrimePlots Standard</h2>
-            <p className="section-subtitle">We redefine land acquisition through uncompromising transparency, exclusive inventory, and seamless end-to-end service.</p>
+            <h2 className="section-title">The Premium Agricultural Land Standard</h2>
+            <p className="section-subtitle">We redefine agricultural land acquisition through uncompromising transparency, exclusive inventory, and seamless end-to-end service.</p>
           </motion.div>
           
           <motion.div 
@@ -170,7 +178,7 @@ export default function Home() {
                 <ShieldCheck size={32} />
               </div>
               <h3 className="feature-title">Verified Heritage</h3>
-              <p style={{ color: 'var(--text-muted)' }}>Rigorous legal diligence ensures every plot possesses a flawless title history.</p>
+              <p style={{ color: 'var(--text-muted)' }}>Rigorous legal diligence ensures every agricultural land possesses a flawless title history.</p>
             </motion.div>
             
             <motion.div variants={fadeInUp} className="feature-card">
@@ -193,8 +201,14 @@ export default function Home() {
       </section>
 
       {/* Featured Properties Section */}
-      <section className="home-section">
-        <div className="container">
+      <section className="home-section" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Agricultural Plot Background */}
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
+          <img src="/plot_bg.png" alt="Agricultural Plot" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(253, 253, 250, 0.85)' }}></div>
+        </div>
+        
+        <div className="container" style={{ position: 'relative', zIndex: 10 }}>
           <motion.div 
             style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem' }}
             initial="hidden"
@@ -256,8 +270,8 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="home-section" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'var(--accent-dark)', zIndex: -2 }}></div>
-        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Architecture" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.2, zIndex: -1 }} />
+        <img src="/cta_bg.png" alt="Lush Green Landscape" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: -2 }} />
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(20, 83, 45, 0.75)', zIndex: -1 }}></div>
         
         <div className="container">
           <motion.div 
@@ -268,14 +282,11 @@ export default function Home() {
             variants={fadeInUp}
           >
             <h2 style={{ fontSize: '3.5rem', marginBottom: '1.5rem', color: 'white', letterSpacing: '-0.03em' }}>Ready to Acquire?</h2>
-            <p style={{ fontSize: '1.25rem', marginBottom: '3rem', opacity: 0.8, lineHeight: 1.8 }}>
+            <p style={{ fontSize: '1.25rem', marginBottom: '3rem', opacity: 0.9, lineHeight: 1.8 }}>
               Engage with our acquisitions team today. We provide bespoke consultation to align our exclusive portfolio with your strategic vision.
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-              <button className="btn" style={{ background: 'var(--accent-gold)', color: 'white' }}>
-                Schedule Consultation
-              </button>
-              <button className="btn btn-outline" style={{ border: '1px solid rgba(255,255,255,0.3)', color: 'white' }} onClick={() => navigate('/properties')}>
+              <button className="btn" style={{ background: 'var(--accent-gold)', color: 'white', padding: '1rem 3rem', fontSize: '1.1rem' }} onClick={() => navigate('/properties')}>
                 Explore Portfolio
               </button>
             </div>

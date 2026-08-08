@@ -63,8 +63,8 @@ export default function About() {
             >
               <div style={{ position: 'absolute', top: '-20px', left: '-20px', width: '100%', height: '100%', border: '2px solid var(--accent-gold)', borderRadius: 'var(--radius-lg)', zIndex: 0 }}></div>
               <img 
-                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                alt="Krishnam Realities Office" 
+                src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80" 
+                alt="Premium Agricultural Land" 
                 style={{ width: '100%', height: '550px', objectFit: 'cover', borderRadius: 'var(--radius-lg)', position: 'relative', zIndex: 1, boxShadow: 'var(--shadow-lg)' }} 
               />
               <div style={{ position: 'absolute', bottom: '30px', right: '-30px', background: 'white', padding: '1.5rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-lg)', zIndex: 2, display: 'flex', alignItems: 'center', gap: '1rem' }}>

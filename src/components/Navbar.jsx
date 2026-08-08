@@ -33,7 +33,7 @@ export default function Navbar() {
         
         <div className="nav-links">
           <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}>Home</Link>
-          <Link to="/properties" className={`nav-link ${location.pathname === '/properties' ? 'active' : ''}`}>Properties</Link>
+          <Link to="/properties" className={`nav-link ${location.pathname === '/properties' ? 'active' : ''}`}>Agricultural Lands</Link>
           <Link to="/about" className="nav-link">About</Link>
           <Link to="/contact" className="nav-link">Contact</Link>
         </div>
