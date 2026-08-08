@@ -68,7 +68,7 @@ export default function Home() {
           className="hero-content"
         >
           <h1 className="hero-title">Invest in Land, Invest in Future</h1>
-          <p className="hero-subtitle">"Your vision, our expertise. Join Krishnam Realities for prime land and smart investment insights."</p>
+          <p className="hero-subtitle">Your vision, our expertise. Join Krishnam Realities for prime land and smart investment insights.</p>
           
           <motion.form 
             className="search-bar-container" 
