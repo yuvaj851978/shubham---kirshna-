@@ -1,7 +1,6 @@
 import defaultPlots from '../data/plots.json';
 
-// Force update for new theme
-localStorage.removeItem('propertyListings');
+// Force update for new theme removed to allow persistence
 
 if (!localStorage.getItem('propertyListings')) {
   localStorage.setItem('propertyListings', JSON.stringify(defaultPlots));

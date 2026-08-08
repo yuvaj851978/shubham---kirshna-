@@ -72,7 +72,7 @@ export default function Plots() {
   return (
     <div className="plots-page" style={{ position: 'relative', overflow: 'hidden' }}>
       {/* Left Side (Map View) - Stays sticky while list scrolls */}
-      <div className="plots-map-container" style={{ position: 'sticky', top: '80px', height: 'calc(100vh - 80px)' }}>
+      <div className="plots-map-container">
         <button 
           onClick={() => setIsSatellite(!isSatellite)}
           style={{ position: 'absolute', top: '20px', right: '20px', zIndex: 1000, padding: '0.5rem 1rem', background: 'white', border: 'none', borderRadius: '4px', boxShadow: '0 2px 6px rgba(0,0,0,0.2)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 'bold' }}
@@ -124,7 +124,7 @@ export default function Plots() {
       <div className="plots-sidebar">
         <div className="plots-filters">
           <div className="filter-header">
-            <h3>Agricultural Land ({filteredPlots.length})</h3>
+            <h3>Land ({filteredPlots.length})</h3>
           </div>
           <div className="filter-row">
             <select 

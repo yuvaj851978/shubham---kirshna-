@@ -57,7 +57,7 @@ export default function Footer() {
           </div>
           
           <div>
-            <h4 className="footer-heading">Property Types</h4>
+            <h4 className="footer-heading">Land Types</h4>
             <ul className="footer-links">
               <li><Link to="/properties">Residential Plots</Link></li>
               <li><Link to="/properties">Commercial Land</Link></li>

@@ -56,7 +56,7 @@ export default function Home() {
       <section className="hero">
         <img 
           src={heroBgImage} 
-          alt="Premium Agricultural Land" 
+          alt="Premium Land" 
           className="hero-bg" 
         />
         <div className="hero-overlay"></div>
@@ -68,7 +68,7 @@ export default function Home() {
           className="hero-content"
         >
           <h1 className="hero-title">Invest in Land, Invest in Future</h1>
-          <p className="hero-subtitle">"Your vision, our expertise. Join Krishnam Realities for prime agricultural land and smart investment insights."</p>
+          <p className="hero-subtitle">"Your vision, our expertise. Join Krishnam Realities for prime land and smart investment insights."</p>
           
           <motion.form 
             className="search-bar-container" 
@@ -119,7 +119,7 @@ export default function Home() {
                 value={searchParams.type}
                 onChange={(e) => setSearchParams({...searchParams, type: e.target.value})}
               >
-                <option value="">Property Type</option>
+                <option value="">Land Type</option>
                 <option value="Farmland">Farmland</option>
                 <option value="Agricultural">Agricultural</option>
                 <option value="Orchard">Orchard</option>
@@ -162,8 +162,8 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeInUp}
           >
-            <h2 className="section-title">The Premium Agricultural Land Standard</h2>
-            <p className="section-subtitle">We redefine agricultural land acquisition through uncompromising transparency, exclusive inventory, and seamless end-to-end service.</p>
+            <h2 className="section-title">The Premium Land Standard</h2>
+            <p className="section-subtitle">We redefine land acquisition through uncompromising transparency, exclusive inventory, and seamless end-to-end service.</p>
           </motion.div>
           
           <motion.div 
@@ -178,7 +178,7 @@ export default function Home() {
                 <ShieldCheck size={32} />
               </div>
               <h3 className="feature-title">Verified Heritage</h3>
-              <p style={{ color: 'var(--text-muted)' }}>Rigorous legal diligence ensures every agricultural land possesses a flawless title history.</p>
+              <p style={{ color: 'var(--text-muted)' }}>Rigorous legal diligence ensures every land possesses a flawless title history.</p>
             </motion.div>
             
             <motion.div variants={fadeInUp} className="feature-card">
@@ -281,7 +281,7 @@ export default function Home() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <h2 style={{ fontSize: '3.5rem', marginBottom: '1.5rem', color: 'white', letterSpacing: '-0.03em' }}>Ready to Acquire?</h2>
+            <h2 className="section-title" style={{ marginBottom: '1.5rem', color: 'white' }}>Ready to Acquire?</h2>
             <p style={{ fontSize: '1.25rem', marginBottom: '3rem', opacity: 0.9, lineHeight: 1.8 }}>
               Engage with our acquisitions team today. We provide bespoke consultation to align our exclusive portfolio with your strategic vision.
             </p>

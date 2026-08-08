@@ -290,7 +290,7 @@ export default function Admin() {
                 </div>
                 <div className="form-row">
                   <div className="form-group" style={{ marginBottom: '1rem' }}>
-                    <label>Property Type</label>
+                    <label>Land Type</label>
                     <select name="type" value={formData.type} onChange={handleChange}>
                       <option value="Residential">Residential</option>
                       <option value="Commercial">Commercial</option>
