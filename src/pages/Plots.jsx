@@ -163,12 +163,14 @@ export default function Plots() {
             >
               <div className={`plot-card-img-wrap ${plot.cardMediaType === 'youtube_shorts' ? 'is-short' : ''}`}>
                 <PlotCardMedia plot={plot} />
-                <span className={`plot-status ${plot.status === 'Available' ? 'available' : ''}`}>
-                  {plot.status}
-                </span>
               </div>
               <div className="plot-card-content">
-                <div className="plot-price">₹{plot.price.toLocaleString('en-IN')}</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.25rem' }}>
+                  <div className="plot-price" style={{ marginBottom: 0 }}>₹{plot.price.toLocaleString('en-IN')}</div>
+                  <span className={`plot-status ${plot.status === 'Available' ? 'available' : ''}`}>
+                    {plot.status}
+                  </span>
+                </div>
                 <h3 className="plot-title">{plot.title}</h3>
                 
                 <div className="plot-meta">
