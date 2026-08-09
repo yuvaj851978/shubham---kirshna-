@@ -65,8 +65,8 @@ export default function Footer() {
               <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', color: 'rgba(255,255,255,0.7)' }}>
                 <Phone size={16} style={{ flexShrink: 0, marginTop: '4px' }} />
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <span>Shalin Shukla</span>
-                  <span>9201135883, 7747013503</span>
+                  <span style={{ whiteSpace: 'nowrap' }}>Shailin Shukla (Director) - 9201135883</span>
+                  <span style={{ whiteSpace: 'nowrap', marginTop: '0.25rem' }}>Anamika Shukla (Founder) - 7747013503</span>
                 </div>
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.7)' }}>
@@ -74,7 +74,7 @@ export default function Footer() {
               </li>
               <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', color: 'rgba(255,255,255,0.7)', marginTop: '0.5rem' }}>
                 <MapPin size={16} style={{ flexShrink: 0, marginTop: '4px' }} /> 
-                Raipur, Chhattishgarh
+                <span>1087-88 1st floor, Lalganga Currency Tower,<br/>VIP Square, Raipur (C.G)</span>
               </li>
             </ul>
           </div>

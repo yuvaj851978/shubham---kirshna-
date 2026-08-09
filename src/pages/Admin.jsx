@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Save, CheckCircle, Plus, ChevronRight, ChevronLeft, LayoutList, Trash2, Edit, Search, Image as ImageIcon, X } from 'lucide-react';
 import { MapContainer, TileLayer, Marker, useMapEvents, useMap } from 'react-leaflet';
 import { getPlots, addPlot, updatePlot, deletePlot } from '../utils/plots';
+import { getInquiries, markAsSeen } from '../utils/inquiries';
+import { getSettings, saveSettings } from '../utils/settings';
+import { Mail, Eye, Settings } from 'lucide-react';
 
 const LocationPicker = ({ formData, setFormData }) => {
   useMapEvents({
@@ -31,6 +34,22 @@ export default function Admin() {
   const navigate = useNavigate();
   const [view, setView] = useState('dashboard'); // 'dashboard' or 'add-form'
   const [plots, setPlots] = useState([]);
+  const [inquiries, setInquiries] = useState([]);
+  const [settings, setSettings] = useState(getSettings());
+  const [isAuthenticated, setIsAuthenticated] = useState(sessionStorage.getItem('adminAuth') === 'true');
+  const [passwordInput, setPasswordInput] = useState('');
+  const [authError, setAuthError] = useState(false);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (passwordInput === 'viraj@2016') {
+      setIsAuthenticated(true);
+      sessionStorage.setItem('adminAuth', 'true');
+      setAuthError(false);
+    } else {
+      setAuthError(true);
+    }
+  };
   
   const [step, setStep] = useState(1);
   const [success, setSuccess] = useState(false);
@@ -61,6 +80,7 @@ export default function Admin() {
 
   useEffect(() => {
     setPlots(getPlots());
+    setInquiries(getInquiries());
     
     const handleDataLoaded = () => setPlots(getPlots());
     window.addEventListener('plotsDataLoaded', handleDataLoaded);
@@ -178,18 +198,180 @@ export default function Admin() {
     setView('add-form');
   };
 
+  // Render Inquiries View
+  if (view === 'inquiries') {
+    return (
+      <div className="admin-page container" style={{ maxWidth: '1000px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
+          <div>
+            <h1 style={{ color: 'var(--accent-dark)', marginBottom: '0.5rem' }}>Customer Inquiries</h1>
+            <p style={{ color: 'var(--text-muted)' }}>View and manage messages from the contact form</p>
+          </div>
+          <button onClick={() => setView('dashboard')} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <ChevronLeft size={18} /> Back to Dashboard
+          </button>
+        </div>
+
+        <div style={{ background: 'white', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-sm)', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.05)' }}>
+          {inquiries.length === 0 ? (
+            <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-muted)' }}>No inquiries found.</div>
+          ) : (
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <thead style={{ background: 'var(--bg-alt)', borderBottom: '1px solid rgba(0,0,0,0.05)', textAlign: 'left' }}>
+                <tr>
+                  <th style={{ padding: '1rem 1.5rem', color: 'var(--text-muted)', fontWeight: 600 }}>Date</th>
+                  <th style={{ padding: '1rem 1.5rem', color: 'var(--text-muted)', fontWeight: 600 }}>Name</th>
+                  <th style={{ padding: '1rem 1.5rem', color: 'var(--text-muted)', fontWeight: 600 }}>Contact Info</th>
+                  <th style={{ padding: '1rem 1.5rem', color: 'var(--text-muted)', fontWeight: 600 }}>Message</th>
+                  <th style={{ padding: '1rem 1.5rem', color: 'var(--text-muted)', fontWeight: 600 }}>Status</th>
+                  <th style={{ padding: '1rem 1.5rem', color: 'var(--text-muted)', fontWeight: 600, textAlign: 'right' }}>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {inquiries.map(inq => (
+                  <tr key={inq.id} style={{ borderBottom: '1px solid rgba(0,0,0,0.05)', background: inq.status === 'new' ? 'rgba(212, 175, 55, 0.05)' : 'white' }}>
+                    <td style={{ padding: '1rem 1.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{new Date(inq.date).toLocaleDateString()}</td>
+                    <td style={{ padding: '1rem 1.5rem', fontWeight: 500 }}>{inq.name}</td>
+                    <td style={{ padding: '1rem 1.5rem', fontSize: '0.9rem' }}>
+                      <a href={`mailto:${inq.email}`} style={{ display: 'block', color: 'var(--primary-teal)', textDecoration: 'none' }}>{inq.email}</a>
+                      <a href={`tel:${inq.phone}`} style={{ display: 'block', color: 'var(--text-main)', textDecoration: 'none', marginTop: '0.25rem' }}>{inq.phone}</a>
+                    </td>
+                    <td style={{ padding: '1rem 1.5rem', maxWidth: '300px', fontSize: '0.9rem', color: 'var(--text-main)', overflow: 'hidden', textOverflow: 'ellipsis' }}>{inq.message}</td>
+                    <td style={{ padding: '1rem 1.5rem' }}>
+                      <span style={{ padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 600, background: inq.status === 'new' ? 'rgba(255, 0, 0, 0.1)' : 'rgba(16, 185, 129, 0.1)', color: inq.status === 'new' ? 'red' : 'var(--success)' }}>
+                        {inq.status.toUpperCase()}
+                      </span>
+                    </td>
+                    <td style={{ padding: '1rem 1.5rem' }}>
+                      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                        {inq.status === 'new' && (
+                          <button onClick={() => { markAsSeen(inq.id); setInquiries(getInquiries()); }} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--primary-teal)', padding: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.85rem' }} title="Mark as Seen">
+                            <CheckCircle size={16} /> Mark Seen
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   // Render Dashboard
+  if (!isAuthenticated) {
+    return (
+      <div className="admin-page container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '70vh' }}>
+        <div style={{ background: 'white', padding: '3rem', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-md)', maxWidth: '400px', width: '100%', textAlign: 'center' }}>
+          <h2 style={{ color: 'var(--accent-dark)', marginBottom: '1.5rem' }}>Admin Access</h2>
+          <form onSubmit={handleLogin}>
+            <input 
+              type="password" 
+              value={passwordInput} 
+              onChange={(e) => setPasswordInput(e.target.value)} 
+              placeholder="Enter Admin Password" 
+              style={{ width: '100%', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,0,0,0.1)', marginBottom: '1rem' }}
+              autoFocus
+            />
+            {authError && <p style={{ color: 'red', fontSize: '0.9rem', marginBottom: '1rem' }}>Incorrect password. Please try again.</p>}
+            <button type="submit" className="btn" style={{ width: '100%', background: 'var(--accent-gold)', color: 'white', padding: '1rem' }}>
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  if (view === 'settings') {
+    return (
+      <div className="admin-page container" style={{ maxWidth: '800px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
+          <div>
+            <h1 style={{ color: 'var(--accent-dark)', marginBottom: '0.5rem' }}>Site Settings</h1>
+            <p style={{ color: 'var(--text-muted)' }}>Manage global images and configuration</p>
+          </div>
+          <button onClick={() => setView('dashboard')} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <ChevronLeft size={18} /> Back to Dashboard
+          </button>
+        </div>
+
+        <div style={{ background: 'white', padding: '3rem', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-sm)', border: '1px solid rgba(0,0,0,0.05)' }}>
+          <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-dark)' }}>About Us Page</h3>
+          
+          <div className="form-group" style={{ marginBottom: '2rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Hero Image (Upload or Paste URL)</label>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--bg-alt)', padding: '0.75rem 1.5rem', borderRadius: 'var(--radius-md)', cursor: 'pointer', border: '1px dashed rgba(0,0,0,0.2)' }}>
+                <ImageIcon size={18} /> Upload Image
+                <input type="file" accept="image/*" onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                      setSettings({...settings, aboutHeroImage: reader.result});
+                    };
+                    reader.readAsDataURL(file);
+                  }
+                }} style={{ display: 'none' }} />
+              </label>
+              <span style={{ color: 'var(--text-muted)' }}>OR</span>
+              <input 
+                type="text" 
+                value={settings.aboutHeroImage} 
+                onChange={(e) => setSettings({...settings, aboutHeroImage: e.target.value})} 
+                style={{ flex: 1, padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,0,0,0.1)', minWidth: '200px' }} 
+                placeholder="Paste Image URL here"
+              />
+              <button 
+                onClick={() => {
+                  saveSettings(settings);
+                  alert('Settings Saved Successfully!');
+                }} 
+                className="btn" 
+                style={{ background: 'var(--accent-gold)', color: 'white', padding: '1rem 2rem' }}
+              >
+                <Save size={18} style={{ marginRight: '0.5rem', verticalAlign: 'middle' }} /> Save
+              </button>
+            </div>
+            
+            <div style={{ marginTop: '1.5rem', borderRadius: 'var(--radius-md)', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.1)', height: '200px' }}>
+              <img src={settings.aboutHeroImage} alt="About Hero Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => e.target.src='https://via.placeholder.com/800x400?text=Invalid+Image+URL'} />
+            </div>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>Preview of the image that will be displayed on the About Us page.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (view === 'dashboard') {
     return (
       <div className="admin-page container" style={{ maxWidth: '1000px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
           <div>
             <h1 style={{ color: 'var(--accent-dark)', marginBottom: '0.5rem' }}>Admin Dashboard</h1>
-            <p style={{ color: 'var(--text-muted)' }}>Manage your property portfolio</p>
+            <p style={{ color: 'var(--text-muted)' }}>Manage your property portfolio and inquiries</p>
           </div>
-          <button onClick={() => setView('add-form')} className="btn" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--accent-gold)', color: 'white' }}>
-            <Plus size={18} /> Add New Project
-          </button>
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <button onClick={() => setView('inquiries')} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Mail size={18} /> View Inquiries
+              {inquiries.filter(i => i.status === 'new').length > 0 && (
+                <span style={{ background: 'red', color: 'white', borderRadius: '50%', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>
+                  {inquiries.filter(i => i.status === 'new').length}
+                </span>
+              )}
+            </button>
+            <button onClick={() => setView('settings')} className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Settings size={18} /> Settings
+            </button>
+            <button onClick={() => setView('add-form')} className="btn" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--accent-gold)', color: 'white' }}>
+              <Plus size={18} /> Add New Project
+            </button>
+          </div>
         </div>
 
         <div style={{ background: 'white', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-sm)', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.05)' }}>
@@ -296,10 +478,11 @@ export default function Admin() {
                   <div className="form-group" style={{ marginBottom: '1rem' }}>
                     <label>Land Type</label>
                     <select name="type" value={formData.type} onChange={handleChange}>
-                      <option value="Residential">Residential</option>
-                      <option value="Commercial">Commercial</option>
-                      <option value="Industrial">Industrial</option>
                       <option value="Agricultural">Agricultural</option>
+                      <option value="Industrial">Industrial</option>
+                      <option value="Commercial">Commercial</option>
+                      <option value="Residential">Residential</option>
+                      <option value="Highway">Highway</option>
                     </select>
                   </div>
                   <div className="form-group" style={{ marginBottom: '1rem' }}>

@@ -143,10 +143,11 @@ export default function Plots() {
               onChange={(e) => setFilter({...filter, type: e.target.value})}
             >
               <option value="">All Types</option>
-              <option value="Farmland">Farmland</option>
               <option value="Agricultural">Agricultural</option>
-              <option value="Orchard">Orchard</option>
-              <option value="Plantation">Plantation</option>
+              <option value="Industrial">Industrial</option>
+              <option value="Commercial">Commercial</option>
+              <option value="Residential">Residential</option>
+              <option value="Highway">Highway</option>
             </select>
           </div>
         </div>

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Search, MapPin, IndianRupee, LayoutGrid, ShieldCheck, Map, ArrowRight, Maximize } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, MapPin, IndianRupee, LayoutGrid, ShieldCheck, Map, ArrowRight, Maximize, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { getPlots } from '../utils/plots';
 import Footer from '../components/Footer';
@@ -16,6 +16,47 @@ export default function Home() {
     budget: ''
   });
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [currentBg, setCurrentBg] = useState(0);
+
+  const heroImages = [
+    heroBgImage,
+    '/land2.png',
+    '/land3.png'
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentBg((prev) => (prev + 1) % heroImages.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const featuredScrollRef = useRef(null);
+
+  const scrollLeft = () => {
+    if (featuredScrollRef.current) {
+      featuredScrollRef.current.scrollBy({ left: -350, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (featuredScrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = featuredScrollRef.current;
+      // Add a small threshold (10px) to handle fractional pixel rounding
+      if (scrollLeft + clientWidth >= scrollWidth - 10) {
+        featuredScrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        featuredScrollRef.current.scrollBy({ left: 350, behavior: 'smooth' });
+      }
+    }
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      scrollRight();
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   const featuredPlots = getPlots();
   const allLocations = [...new Set(featuredPlots.map(p => p.location))];
@@ -54,11 +95,18 @@ export default function Home() {
       
       {/* Hero Section */}
       <section className="hero">
-        <img 
-          src={heroBgImage} 
-          alt="Premium Land" 
-          className="hero-bg" 
-        />
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={currentBg}
+            src={heroImages[currentBg]}
+            alt="Premium Land"
+            className="hero-bg"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5 }}
+          />
+        </AnimatePresence>
         <div className="hero-overlay"></div>
         
         <motion.div 
@@ -67,8 +115,12 @@ export default function Home() {
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="hero-content"
         >
-          <h1 className="hero-title">Invest in Land, Invest in Future</h1>
-          <p className="hero-subtitle">Your vision, our expertise. Join Krishnam Realities for prime land and smart investment insights.</p>
+          <h1 className="hero-title">
+            Invest in Land,<br />Invest in Future
+          </h1>
+          <p className="hero-subtitle">
+            Your vision, our expertise. Join Krishnam Realities<br />for prime land and smart investment insights.
+          </p>
           
           <motion.form 
             className="search-bar-container" 
@@ -120,10 +172,11 @@ export default function Home() {
                 onChange={(e) => setSearchParams({...searchParams, type: e.target.value})}
               >
                 <option value="">Land Type</option>
-                <option value="Farmland">Farmland</option>
                 <option value="Agricultural">Agricultural</option>
-                <option value="Orchard">Orchard</option>
-                <option value="Plantation">Plantation</option>
+                <option value="Industrial">Industrial</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Residential">Residential</option>
+                <option value="Highway">Highway</option>
               </select>
             </motion.div>
             
@@ -148,13 +201,95 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section className="home-section bg-light" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Creeper Vines Overlay */}
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', pointerEvents: 'none', zIndex: 0, display: 'flex', justifyContent: 'space-between', opacity: 0.8 }}>
-          <img src="/creeper_transparent.png" alt="Creeper Vine" style={{ width: '20vw', minWidth: '150px', objectFit: 'contain', transformOrigin: 'top center', marginTop: '-3%' }} />
-          <img src="/creeper_transparent.png" alt="Creeper Vine" style={{ width: '25vw', minWidth: '200px', objectFit: 'contain', transform: 'scaleX(-1)', transformOrigin: 'top center', marginTop: '-3%' }} />
+      <div style={{ position: 'relative', backgroundImage: 'url(/plot_bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(253, 253, 250, 0.85)', zIndex: 0 }}></div>
+
+      {/* Featured Properties Section */}
+      <section className="home-section" style={{ position: 'relative', zIndex: 10 }}>
+        
+        <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+          <motion.div 
+            style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem' }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <div>
+              <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '0.5rem' }}>Signature Collection</h2>
+              <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>An exclusive selection of our finest properties.</p>
+            </div>
+            
+            <button className="btn btn-outline" onClick={() => navigate('/properties')} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              View Portfolio <ArrowRight size={18} />
+            </button>
+          </motion.div>
+          
+          <div style={{ position: 'relative', width: '100%' }}>
+            <button 
+              onClick={scrollLeft}
+              className="slider-nav-btn"
+              style={{ position: 'absolute', left: '-24px', top: '50%', transform: 'translateY(-50%)', background: 'white', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '50%', width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 4px 10px rgba(0,0,0,0.1)', zIndex: 20 }}
+            >
+              <ChevronLeft size={24} style={{ color: 'var(--primary-dark)' }} />
+            </button>
+            <button 
+              onClick={scrollRight}
+              className="slider-nav-btn"
+              style={{ position: 'absolute', right: '-24px', top: '50%', transform: 'translateY(-50%)', background: 'white', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '50%', width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 4px 10px rgba(0,0,0,0.1)', zIndex: 20 }}
+            >
+              <ChevronRight size={24} style={{ color: 'var(--primary-dark)' }} />
+            </button>
+
+            <div className="featured-scroll-container" ref={featuredScrollRef} style={{ scrollBehavior: 'smooth', margin: 0, paddingBottom: '2rem', overflowX: 'auto', overflowY: 'hidden', msOverflowStyle: 'none', scrollbarWidth: 'none' }}>
+              <style>{'\n.featured-scroll-container::-webkit-scrollbar { display: none; }\n'}</style>
+            <motion.div 
+              className="featured-grid"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={staggerContainer}
+            >
+              {featuredPlots.map((plot) => (
+                <motion.div 
+                  key={plot.id}
+                  variants={fadeInUp}
+                  className="plot-card"
+                  onClick={() => navigate(`/properties/${plot.id}`)}
+                >
+                  <div className={`plot-card-img-wrap ${plot.cardMediaType === 'youtube_shorts' ? 'is-short' : ''}`}>
+                    <PlotCardMedia plot={plot} />
+                  </div>
+                  <div className="plot-card-content">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                      <div className="plot-price" style={{ marginBottom: 0 }}>₹{plot.price.toLocaleString('en-IN')}</div>
+                      <span className={`plot-status ${plot.status === 'Available' ? 'available' : ''}`}>
+                        {plot.status}
+                      </span>
+                    </div>
+                    <h3 className="plot-title">{plot.title}</h3>
+                    
+                    <div className="plot-meta">
+                      <div className="plot-meta-item">
+                        <Maximize size={16} />
+                        <span>{plot.size} sq ft</span>
+                      </div>
+                      <div className="plot-meta-item">
+                        <MapPin size={16} />
+                        <span>{plot.location}</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+            </div>
+          </div>
         </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="home-section" style={{ position: 'relative', zIndex: 10 }}>
         <div className="container" style={{ position: 'relative', zIndex: 10 }}>
           <motion.div 
             initial="hidden"
@@ -200,78 +335,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Properties Section */}
-      <section className="home-section" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Agricultural Plot Background */}
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-          <img src="/plot_bg.png" alt="Agricultural Plot" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(253, 253, 250, 0.85)' }}></div>
-        </div>
-        
-        <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-          <motion.div 
-            style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem' }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-          >
-            <div>
-              <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '0.5rem' }}>Signature Collection</h2>
-              <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>An exclusive selection of our finest properties.</p>
-            </div>
-            <button className="btn btn-outline" onClick={() => navigate('/properties')} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              View Portfolio <ArrowRight size={18} />
-            </button>
-          </motion.div>
-          
-          <div className="featured-scroll-container">
-            <motion.div 
-              className="featured-grid"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
-            >
-              {featuredPlots.map((plot) => (
-                <motion.div 
-                  key={plot.id}
-                  variants={fadeInUp}
-                  className="plot-card"
-                  onClick={() => navigate(`/properties/${plot.id}`)}
-                >
-                  <div className={`plot-card-img-wrap ${plot.cardMediaType === 'youtube_shorts' ? 'is-short' : ''}`}>
-                    <PlotCardMedia plot={plot} />
-                  </div>
-                  <div className="plot-card-content">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
-                      <div className="plot-price" style={{ marginBottom: 0 }}>₹{plot.price.toLocaleString('en-IN')}</div>
-                      <span className={`plot-status ${plot.status === 'Available' ? 'available' : ''}`}>
-                        {plot.status}
-                      </span>
-                    </div>
-                    <h3 className="plot-title">{plot.title}</h3>
-                    
-                    <div className="plot-meta">
-                      <div className="plot-meta-item">
-                        <Maximize size={16} />
-                        <span>{plot.size} sq ft</span>
-                      </div>
-                      <div className="plot-meta-item">
-                        <MapPin size={16} />
-                        <span>{plot.location}</span>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      </div>
 
       {/* CTA Section */}
-      <section className="home-section" style={{ position: 'relative', overflow: 'hidden' }}>
+      <section className="home-section" style={{ position: 'relative', zIndex: 10 }}>
         <img src="/cta_bg.png" alt="Lush Green Landscape" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: -2 }} />
         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(20, 83, 45, 0.75)', zIndex: -1 }}></div>
         
@@ -285,7 +352,7 @@ export default function Home() {
           >
             <h2 className="section-title" style={{ marginBottom: '1.5rem', color: 'white' }}>Ready to Acquire?</h2>
             <p style={{ fontSize: '1.25rem', marginBottom: '3rem', opacity: 0.9, lineHeight: 1.8 }}>
-              Engage with our acquisitions team today. We provide bespoke consultation to align our exclusive portfolio with your strategic vision.
+              Engage with our acquisitions team today. We provide Agricultural, Industrial, Commercial, Residential, and Highway lands to align our exclusive portfolio with your strategic vision.
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
               <button className="btn" style={{ background: 'var(--accent-gold)', color: 'white', padding: '1rem 3rem', fontSize: '1.1rem' }} onClick={() => navigate('/properties')}>

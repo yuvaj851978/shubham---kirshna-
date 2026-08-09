@@ -44,12 +44,12 @@ export default function PlotCardMedia({ plot }) {
         style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', justifyContent: 'center', background: '#000', pointerEvents: 'auto' }}
       >
         <iframe 
-          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=${isFullscreen ? 1 : 0}&modestbranding=1&playsinline=1`} 
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0&loop=1&playlist=${videoId}&controls=1&modestbranding=1&playsinline=1`} 
           title="YouTube Shorts"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
           allowFullScreen
-          style={{ width: '100%', height: '100%', pointerEvents: isFullscreen ? 'auto' : 'none' }}
+          style={{ width: '100%', height: '100%' }}
         ></iframe>
         
         {!isFullscreen && (

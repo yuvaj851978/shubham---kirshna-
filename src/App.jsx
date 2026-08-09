@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import WhatsAppButton from './components/WhatsAppButton';
 import FallingLeaves from './components/FallingLeaves';
 import FlyingBirds from './components/FlyingBirds';
 import Home from './pages/Home';
@@ -24,6 +25,7 @@ function App() {
       <FlyingBirds />
       <FallingLeaves />
       <Navbar />
+      <WhatsAppButton />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/properties" element={<Plots />} />

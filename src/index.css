@@ -229,7 +229,7 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.2) 100%);
   z-index: -1;
 }
 
@@ -1318,6 +1318,201 @@ button {
   .about-core-values {
     padding: 5rem 0;
   }
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent-dark);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.about-hero-img-wrap {
+  position: relative;
+}
+
+.about-hero-img-bg {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--accent-gold);
+  border-radius: var(--radius-lg);
+  z-index: 0;
+}
+
+.about-hero-img {
+  width: 100%;
+  height: 550px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--shadow-lg);
+}
+
+.about-hero-badge {
+  position: absolute;
+  bottom: 30px;
+  right: -30px;
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.about-core-values {
+  padding: 8rem 0;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.value-card {
+  padding: 2.5rem 2rem;
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.value-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+}
+
+.value-icon {
+  width: 70px;
+  height: 70px;
+  background: rgba(179, 143, 79, 0.1);
+  color: var(--accent-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.about-cta {
+  padding: 6rem 0;
+  background: var(--accent-dark);
+  color: white;
+}
+
+.about-cta-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-cta-title {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.about-cta-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.about-cta-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-primary-gold {
+  background: var(--accent-gold);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-primary-gold:hover {
+  background: #52860a;
+  color: white;
+}
+
+.btn-outline-white {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+}
+
+.btn-outline-white:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* About Page Mobile Responsiveness */
+@media (max-width: 768px) {
+  .about-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .about-title {
+    font-size: 2.5rem;
+  }
+  
+  .about-stats {
+    gap: 1.5rem;
+    justify-content: space-between;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .about-hero-badge {
+    right: 0;
+    left: 0;
+    bottom: -20px;
+    margin: 0 auto;
+    width: 90%;
+    justify-content: center;
+  }
+  
+  .about-hero-img {
+    height: 400px;
+  }
+
+  .about-core-values {
+    padding: 5rem 0;
+  }
   
   .about-cta-title {
     font-size: 2.25rem;
@@ -1328,3 +1523,26 @@ button {
   }
 }
 
+/* WhatsApp Floating Button */
+.whatsapp-floating-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: #25D366;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-floating-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+  color: white;
+}

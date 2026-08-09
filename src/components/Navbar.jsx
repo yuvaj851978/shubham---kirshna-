@@ -40,7 +40,7 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <div className="nav-links">
           <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}>Home</Link>
-          <Link to="/properties" className={`nav-link ${location.pathname === '/properties' ? 'active' : ''}`}>Land</Link>
+          <Link to="/properties" className={`nav-link ${location.pathname === '/properties' ? 'active' : ''}`}>Lands</Link>
           <Link to="/about" className="nav-link">About</Link>
           <Link to="/contact" className="nav-link">Contact</Link>
         </div>
@@ -64,7 +64,7 @@ export default function Navbar() {
             className="mobile-menu"
           >
             <Link to="/" className={`mobile-nav-link ${location.pathname === '/' ? 'active' : ''}`}>Home</Link>
-            <Link to="/properties" className={`mobile-nav-link ${location.pathname === '/properties' ? 'active' : ''}`}>Land</Link>
+            <Link to="/properties" className={`mobile-nav-link ${location.pathname === '/properties' ? 'active' : ''}`}>Lands</Link>
             <Link to="/about" className="mobile-nav-link">About</Link>
             <Link to="/contact" className="mobile-nav-link">Contact</Link>
           </motion.div>

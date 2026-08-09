@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { addInquiry } from '../utils/inquiries';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, CheckCircle } from 'lucide-react';
 import Footer from '../components/Footer';
 
 export default function Contact() {
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   useEffect(() => {
+
     window.scrollTo(0, 0);
   }, []);
 
@@ -41,7 +46,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--accent-dark)' }}>Office</h4>
-                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>Raipur, Chhattishgarh</p>
+                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>1087-88 1st floor, Lalganga Currency Tower,<br/>VIP Square, Raipur (C.G)</p>
                 </div>
               </div>
 
@@ -51,7 +56,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--accent-dark)' }}>Phone</h4>
-                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>Shalin Shukla<br/>9201135883, 7747013503</p>
+                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>Shailin Shukla (Director) - 9201135883<br/>Anamika Shukla (Founder) - 7747013503</p>
                 </div>
               </div>
 
@@ -71,7 +76,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--accent-dark)' }}>Working Hours</h4>
-                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>Monday - Friday: 9:00 AM - 6:00 PM<br/>Saturday: 10:00 AM - 4:00 PM</p>
+                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>24 * 7<br/>Monday - Saturday: 9:00 AM - 7:00 PM<br/>Sunday: 12:00 PM - 4:00 PM</p>
                 </div>
               </div>
             </div>
@@ -85,23 +90,42 @@ export default function Contact() {
             style={{ background: 'white', padding: '3rem', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-md)', border: '1px solid rgba(0,0,0,0.05)' }}
           >
             <h3 style={{ fontSize: '1.8rem', color: 'var(--accent-dark)', marginBottom: '2rem' }}>Send a Message</h3>
-            <form onSubmit={(e) => e.preventDefault()}>
+            {isSubmitted ? (
+              <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center', padding: '3rem 1rem' }}>
+                <CheckCircle size={64} style={{ color: 'var(--success)', margin: '0 auto 1.5rem' }} />
+                <h4 style={{ fontSize: '1.5rem', color: 'var(--accent-dark)', marginBottom: '0.5rem' }}>Inquiry Sent Successfully!</h4>
+                <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>Thank you for reaching out. Our team will contact you shortly.</p>
+                <button onClick={() => { setIsSubmitted(false); setFormData({ name: '', email: '', phone: '', message: '' }); }} className="btn btn-outline">
+                  Send Another Message
+                </button>
+              </motion.div>
+            ) : (
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              addInquiry(formData);
+              setIsSubmitted(true);
+            }}>
               <div style={{ marginBottom: '1.5rem' }}>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Full Name</label>
-                <input type="text" style={{ width: '100%', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,0,0,0.1)' }} placeholder="John Doe" />
+                <input type="text" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} style={{ width: '100%', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,0,0,0.1)' }} placeholder="John Doe" />
               </div>
               <div style={{ marginBottom: '1.5rem' }}>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Email Address</label>
-                <input type="email" style={{ width: '100%', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,0,0,0.1)' }} placeholder="john@example.com" />
+                <input type="email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} style={{ width: '100%', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,0,0,0.1)' }} placeholder="john@example.com" />
+              </div>
+              <div style={{ marginBottom: '1.5rem' }}>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Phone Number</label>
+                <input type="tel" required value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} style={{ width: '100%', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,0,0,0.1)' }} placeholder="+91 9876543210" />
               </div>
               <div style={{ marginBottom: '1.5rem' }}>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Message</label>
-                <textarea rows="5" style={{ width: '100%', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,0,0,0.1)' }} placeholder="How can we help you?"></textarea>
+                <textarea rows="4" required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} style={{ width: '100%', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,0,0,0.1)' }} placeholder="How can we help you?"></textarea>
               </div>
-              <button className="btn" style={{ width: '100%', padding: '1rem', background: 'var(--accent-gold)', color: 'white', fontSize: '1.1rem' }}>
+              <button type="submit" className="btn" style={{ width: '100%', padding: '1rem', background: 'var(--accent-gold)', color: 'white', fontSize: '1.1rem' }}>
                 Submit Inquiry
               </button>
             </form>
+            )}
           </motion.div>
 
         </div>

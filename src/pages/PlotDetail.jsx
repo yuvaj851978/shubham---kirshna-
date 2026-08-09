@@ -240,7 +240,7 @@ export default function PlotDetail() {
               <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '2rem', lineHeight: 1.6 }}>Contact our real estate experts today to schedule a viewing or request more information.</p>
               
               <a 
-                href={`https://wa.me/${plot.contactNumber || '919876543210'}?text=${encodeURIComponent(`Hi Krishnam Realities, I am interested in ${plot.title} (${plot.size} sq ft) located at ${plot.address}. Is it still available?`)}`}
+                href={`https://wa.me/${plot.contactNumber || '919201135883'}?text=${encodeURIComponent(`Hi Krishnam Realities, I am interested in ${plot.title} (${plot.size} sq ft) located at ${plot.address}. Is it still available?`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn" 

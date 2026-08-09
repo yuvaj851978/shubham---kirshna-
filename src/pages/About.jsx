@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { getSettings } from '../utils/settings';
 import { motion } from 'framer-motion';
 import { Shield, Target, Award, Users, CheckCircle, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -6,9 +7,13 @@ import Footer from '../components/Footer';
 
 export default function About() {
   const navigate = useNavigate();
+  const [settings, setSettings] = useState(getSettings());
   
   useEffect(() => {
     window.scrollTo(0, 0);
+    const handleUpdate = () => setSettings(getSettings());
+    window.addEventListener('settingsUpdated', handleUpdate);
+    return () => window.removeEventListener('settingsUpdated', handleUpdate);
   }, []);
 
   const fadeInUp = {
@@ -36,16 +41,16 @@ export default function About() {
                 Shaping the future of <span style={{ color: 'var(--accent-gold)' }}>premium land</span> acquisition.
               </h1>
               <p className="about-subtitle">
-                Krishnam Realities is the premier destination for exclusive land acquisition. We connect visionaries with extraordinary plots across India's most highly sought-after corridors, focusing on transparency and uncompromising quality.
+                Krishnam Realities is the premier destination for exclusive land acquisition. We connect visionaries with extraordinary lands across Chhattisgarh's most highly sought-after corridors, focusing on transparency and uncompromising quality.
               </p>
               
               <div className="about-stats">
                 <div>
-                  <div className="stat-number">15+</div>
+                  <div className="stat-number">10+</div>
                   <div className="stat-label">Years Experience</div>
                 </div>
                 <div>
-                  <div className="stat-number">500+</div>
+                  <div className="stat-number">50+</div>
                   <div className="stat-label">Plots Delivered</div>
                 </div>
                 <div>
@@ -63,7 +68,7 @@ export default function About() {
             >
               <div className="about-hero-img-bg"></div>
               <img 
-                src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80" 
+                src={settings.aboutHeroImage} 
                 alt="Premium Land" 
                 className="about-hero-img"
               />
@@ -99,8 +104,7 @@ export default function About() {
             {[
               { icon: <Shield size={36} />, title: "Absolute Trust", desc: "Rigorous legal diligence ensures every plot possesses a flawless title history." },
               { icon: <Target size={36} />, title: "Precision Focus", desc: "Curated assets located strictly within high-appreciation, premium development zones." },
-              { icon: <Award size={36} />, title: "Premium Quality", desc: "We only list properties that meet our incredibly strict internal quality threshold." },
-              { icon: <Users size={36} />, title: "Client Centric", desc: "Bespoke consultation to align our exclusive portfolio with your strategic vision." }
+              { icon: <Award size={36} />, title: "Premium Quality", desc: "We only list properties that meet our incredibly strict internal quality threshold." }
             ].map((value, idx) => (
               <motion.div 
                 key={idx}
