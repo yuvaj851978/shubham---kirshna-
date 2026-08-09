@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import FallingLeaves from './components/FallingLeaves';
@@ -12,6 +12,13 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 
 function App() {
+  const [, setForceRender] = useState(0);
+
+  useEffect(() => {
+    const handleDataLoaded = () => setForceRender(prev => prev + 1);
+    window.addEventListener('plotsDataLoaded', handleDataLoaded);
+    return () => window.removeEventListener('plotsDataLoaded', handleDataLoaded);
+  }, []);
   return (
     <Router>
       <FlyingBirds />
