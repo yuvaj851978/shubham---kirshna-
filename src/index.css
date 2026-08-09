@@ -1581,3 +1581,16 @@ button {
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
   color: white;
 }
+
+.property-gallery > div,
+.property-gallery > img {
+  height: 400px;
+}
+
+@media (max-width: 768px) {
+  .property-gallery > div,
+  .property-gallery > img {
+    height: 250px;
+  }
+}
+

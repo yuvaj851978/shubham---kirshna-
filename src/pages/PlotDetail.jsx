@@ -88,21 +88,21 @@ export default function PlotDetail() {
           className="detail-main"
         >
           {/* Main Property Image Gallery */}
-          <div style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', marginBottom: '3rem', boxShadow: 'var(--shadow-sm)', backgroundColor: 'var(--bg-alt)' }}>
+          <div className="property-gallery" style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', marginBottom: '3rem', boxShadow: 'var(--shadow-sm)', backgroundColor: 'var(--bg-alt)' }}>
             {(() => {
               const currentImages = plot.images && plot.images.length > 0 ? plot.images : (plot.image ? [plot.image] : []);
               if (currentImages.length === 1) {
-                return <img src={currentImages[0]} alt={plot.title} onClick={() => setLightboxImage(currentImages[0])} style={{ width: '100%', height: '400px', objectFit: 'cover', cursor: 'pointer' }} />;
+                return <img src={currentImages[0]} alt={plot.title} onClick={() => setLightboxImage(currentImages[0])} style={{ width: '100%', objectFit: 'cover', cursor: 'pointer' }} />;
               } else if (currentImages.length === 2) {
                 return (
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', height: '400px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
                     <img src={currentImages[0]} alt={plot.title} onClick={() => setLightboxImage(currentImages[0])} style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer' }} />
                     <img src={currentImages[1]} alt={plot.title} onClick={() => setLightboxImage(currentImages[1])} style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer' }} />
                   </div>
                 );
               } else if (currentImages.length >= 3) {
                 return (
-                  <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '0.5rem', height: '400px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '0.5rem' }}>
                     <img src={currentImages[0]} alt={plot.title} onClick={() => setLightboxImage(currentImages[0])} style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer' }} />
                     <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gap: '0.5rem', height: '100%' }}>
                       <img src={currentImages[1]} alt={plot.title} onClick={() => setLightboxImage(currentImages[1])} style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer' }} />
@@ -118,7 +118,7 @@ export default function PlotDetail() {
                   </div>
                 );
               }
-              return <div style={{ width: '100%', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}>No images available</div>;
+              return <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}>No images available</div>;
             })()}
           </div>
 
@@ -230,7 +230,7 @@ export default function PlotDetail() {
               </div>
               <div className="spec-item" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
                 <span style={{ color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}><MapPin size={18} /> Zone</span>
-                <span style={{ fontWeight: 600, textAlign: 'right' }}>{plot.location}</span>
+                <span style={{ fontWeight: 600, textAlign: 'right', whiteSpace: 'nowrap' }}>{plot.location}</span>
               </div>
             </div>
 
@@ -248,9 +248,6 @@ export default function PlotDetail() {
               >
                 <MessageCircle size={20} /> Chat on WhatsApp
               </a>
-              <button className="btn btn-outline" style={{ width: '100%', borderColor: 'rgba(255,255,255,0.3)', color: 'white', padding: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem' }}>
-                <Mail size={18} /> Email Agent
-              </button>
             </div>
           </div>
         </motion.div>
