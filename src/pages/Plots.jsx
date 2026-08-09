@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
-import { MapPin, Maximize, ArrowRight, Layers, Search } from 'lucide-react';
+import { MapPin, Maximize, ArrowRight, Layers, Search, List } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getPlots } from '../utils/plots';
 import PlotSlider from '../components/PlotSlider';
@@ -42,6 +42,7 @@ export default function Plots() {
   }, [location.search]);
 
   const [isSatellite, setIsSatellite] = useState(true);
+  const [showMobileMap, setShowMobileMap] = useState(false);
 
   const allPlots = getPlots();
   const filteredPlots = allPlots.filter(plot => {
@@ -72,7 +73,7 @@ export default function Plots() {
   return (
     <div className="plots-page" style={{ position: 'relative', overflow: 'hidden' }}>
       {/* Left Side (Map View) - Stays sticky while list scrolls */}
-      <div className="plots-map-container">
+      <div className={"plots-map-container " + (showMobileMap ? 'active' : '')}>
         <button 
           onClick={() => setIsSatellite(!isSatellite)}
           style={{ position: 'absolute', top: '20px', right: '20px', zIndex: 1000, padding: '0.5rem 1rem', background: 'white', border: 'none', borderRadius: '4px', boxShadow: '0 2px 6px rgba(0,0,0,0.2)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 'bold' }}
@@ -118,6 +119,28 @@ export default function Plots() {
             </Marker>
           ))}
         </MapContainer>
+      </div>
+
+      {/* Floating Map Toggle for Mobile */}
+      <div className="mobile-map-toggle">
+        <button 
+          onClick={() => setShowMobileMap(!showMobileMap)} 
+          style={{ 
+            width: '60px', 
+            height: '60px', 
+            borderRadius: '50%', 
+            background: 'var(--accent-dark)', 
+            color: 'white', 
+            border: 'none', 
+            boxShadow: '0 4px 14px rgba(0,0,0,0.3)', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            cursor: 'pointer'
+          }}
+        >
+          {showMobileMap ? <List size={26} /> : <MapPin size={26} />}
+        </button>
       </div>
 
       {/* Right Side (List View) */}
