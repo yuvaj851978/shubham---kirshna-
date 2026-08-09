@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "Sunrise Valley Farmland",
+    "title": "Sunris",
     "location": "Lonavala, Maharashtra",
     "address": "123 Sunrise Blvd, Lonavala, MH 410401",
     "price": 14500000,
@@ -15,8 +15,12 @@
     "description": "A beautiful lush green agricultural plot in the highly sought-after hills of Lonavala. Ideal for organic farming.",
     "lat": 18.7481,
     "lng": 73.4072,
-    "landmarks": ["Lonavala Lake (1 km)", "Tiger Point (3 km)"],
-    "youtubeId": "dQw4w9WgXcQ"
+    "landmarks": [
+      "Lonavala Lake (1 km)",
+      "Tiger Point (3 km)"
+    ],
+    "youtubeId": "https://www.youtube.com/shorts/vcbShV5-mHg?feature=share",
+    "cardMediaType": "youtube_shorts"
   },
   {
     "id": 2,
@@ -34,7 +38,10 @@
     "description": "Prime agricultural real estate located near water canals. Perfect for large scale cultivation or a farmhouse setup.",
     "lat": 18.5204,
     "lng": 73.8567,
-    "landmarks": ["Canal (0.2 km)", "Main Highway (0.5 km)"],
+    "landmarks": [
+      "Canal (0.2 km)",
+      "Main Highway (0.5 km)"
+    ],
     "youtubeId": "aqz-KE-bpKQ"
   },
   {
@@ -53,7 +60,10 @@
     "description": "Scenic plot with existing fruit trees. Quiet rural neighborhood ideal for a nature retreat.",
     "lat": 12.2958,
     "lng": 76.6394,
-    "landmarks": ["Mysore Palace (10 km)", "River (2 km)"],
+    "landmarks": [
+      "Mysore Palace (10 km)",
+      "River (2 km)"
+    ],
     "youtubeId": "tO01J-M3g0U"
   },
   {
@@ -72,7 +82,10 @@
     "description": "Large plantation plot with great soil quality and weather conditions for viticulture.",
     "lat": 19.9975,
     "lng": 73.7898,
-    "landmarks": ["Sula Vineyards (5 km)", "Lake (3 km)"],
+    "landmarks": [
+      "Sula Vineyards (5 km)",
+      "Lake (3 km)"
+    ],
     "youtubeId": "LXb3EKWsInQ"
   },
   {
@@ -91,7 +104,10 @@
     "description": "Ultra-premium coffee estate in the hills. Surrounded by pristine greenery and misty mountains.",
     "lat": 12.3375,
     "lng": 75.8069,
-    "landmarks": ["Abbey Falls (5 km)", "Madikeri Fort (4 km)"],
+    "landmarks": [
+      "Abbey Falls (5 km)",
+      "Madikeri Fort (4 km)"
+    ],
     "youtubeId": "aqz-KE-bpKQ"
   },
   {
@@ -108,9 +124,12 @@
       "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80"
     ],
     "description": "Extremely fertile plains ready for heavy wheat or rice cultivation. Excellent water connectivity.",
-    "lat": 30.9010,
+    "lat": 30.901,
     "lng": 75.8573,
-    "landmarks": ["Canal (1.5 km)", "Main Market (5 km)"],
+    "landmarks": [
+      "Canal (1.5 km)",
+      "Main Market (5 km)"
+    ],
     "youtubeId": "LXb3EKWsInQ"
   }
 ]
