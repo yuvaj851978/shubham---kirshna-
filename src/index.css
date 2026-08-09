@@ -524,7 +524,6 @@ button {
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  margin-top: 0.25rem;
 }
 
 .plot-status.available {

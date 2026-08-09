@@ -244,7 +244,7 @@ export default function Home() {
                     <PlotCardMedia plot={plot} />
                   </div>
                   <div className="plot-card-content">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.25rem' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
                       <div className="plot-price" style={{ marginBottom: 0 }}>₹{plot.price.toLocaleString('en-IN')}</div>
                       <span className={`plot-status ${plot.status === 'Available' ? 'available' : ''}`}>
                         {plot.status}

@@ -25,15 +25,8 @@ export default function Footer() {
       <div className="container" style={{ position: 'relative', zIndex: 10 }}>
         <div className="footer-grid">
           <div>
-            <Link to="/" className="footer-logo" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '0px' }}>
-              <svg width="60" height="25" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 40L50 15L90 40L80 40L50 22L20 40H10Z" fill="#F59E0B" />
-                <path d="M50 15L90 40H100L50 10L10 35H0L50 0L100 30L90 40L50 15Z" fill="#F97316" />
-              </svg>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: '1', marginTop: '5px' }}>
-                <span style={{ fontSize: '1.25rem', fontWeight: '800', color: 'white', letterSpacing: '0.05em' }}>KRISHNAM</span>
-                <span style={{ fontSize: '0.75rem', fontWeight: '500', color: 'rgba(255,255,255,0.7)', letterSpacing: '0.15em', marginTop: '2px' }}>REALITIES</span>
-              </div>
+            <Link to="/" className="footer-logo">
+              <img src="/logo.png" alt="Krishnam Realities" style={{ height: '80px', objectFit: 'contain' }} />
             </Link>
             <p className="footer-text">
               Premium land listings, curated for visionary developers and future homeowners. 
