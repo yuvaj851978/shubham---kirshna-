@@ -10,7 +10,8 @@ let inMemoryPlots = [...defaultPlots];
 // Fetch the latest data from JSONBin in the background when the app loads
 if (JSONBIN_ID !== 'PASTE_YOUR_BIN_ID_HERE') {
   fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}/latest`, {
-    headers: { 'X-Master-Key': JSONBIN_KEY }
+    headers: { 'X-Master-Key': JSONBIN_KEY },
+    cache: 'no-store'
   })
     .then(res => res.json())
     .then(data => {

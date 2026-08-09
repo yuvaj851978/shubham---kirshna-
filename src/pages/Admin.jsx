@@ -61,6 +61,10 @@ export default function Admin() {
 
   useEffect(() => {
     setPlots(getPlots());
+    
+    const handleDataLoaded = () => setPlots(getPlots());
+    window.addEventListener('plotsDataLoaded', handleDataLoaded);
+    return () => window.removeEventListener('plotsDataLoaded', handleDataLoaded);
   }, [view]);
 
   const handleChange = (e) => {
