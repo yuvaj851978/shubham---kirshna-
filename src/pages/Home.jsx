@@ -221,7 +221,19 @@ export default function Home() {
               <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.1rem' }}>An exclusive selection of our finest properties.</p>
             </div>
             
-            <button className="btn btn-outline" onClick={() => navigate('/properties')} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <button 
+              className="btn" 
+              onClick={() => navigate('/properties')} 
+              style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '0.5rem',
+                background: 'white',
+                color: 'var(--accent-dark)',
+                border: 'none',
+                fontWeight: 'bold'
+              }}
+            >
               View Portfolio <ArrowRight size={18} />
             </button>
           </motion.div>
