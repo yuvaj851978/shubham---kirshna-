@@ -56,7 +56,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--accent-dark)' }}>Phone</h4>
-                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>Shailin Shukla (Director) - 9201135883<br/>Anamika Shukla (Founder) - 7747013503</p>
+                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>Shalin Shukla (Director) - 9201135883<br/>Anamika Shukla (Founder) - 7747013503</p>
                 </div>
               </div>
 
@@ -76,7 +76,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--accent-dark)' }}>Working Hours</h4>
-                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>24 * 7<br/>Monday - Saturday: 9:00 AM - 7:00 PM<br/>Sunday: 12:00 PM - 4:00 PM</p>
+                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>Monday - Saturday: 9:00 AM - 7:00 PM<br/>Sunday: 12:00 PM - 4:00 PM</p>
                 </div>
               </div>
             </div>

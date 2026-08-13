@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import logoImg from '../assets/logo.png';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -34,7 +35,7 @@ export default function Navbar() {
     >
       <div className="navbar-container">
         <Link to="/" className="logo" style={{ display: 'flex', alignItems: 'center' }}>
-          <img src="/logo.png" alt="Krishnam Realities" style={{ height: '80px', objectFit: 'contain' }} />
+          <img src={logoImg} alt="Krishnam Realities" style={{ height: '55px', objectFit: 'contain' }} />
         </Link>
         
         {/* Desktop Menu */}

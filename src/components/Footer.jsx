@@ -29,8 +29,7 @@ export default function Footer() {
               <img src="/logo.png" alt="Krishnam Realities" style={{ height: '80px', objectFit: 'contain' }} />
             </Link>
             <p className="footer-text">
-              Premium land listings, curated for visionary developers and future homeowners. 
-              Find the perfect foundation for your next project.
+              Investing in land is a powerful way to build long-term wealth because land is a limited resource that cannot be made.
             </p>
             <div style={{ display: 'flex', gap: '1rem' }}>
               <a href="#" style={{ color: 'rgba(255,255,255,0.7)' }}>Instagram</a>
@@ -65,7 +64,7 @@ export default function Footer() {
               <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', color: 'rgba(255,255,255,0.7)' }}>
                 <Phone size={16} style={{ flexShrink: 0, marginTop: '4px' }} />
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <span style={{ whiteSpace: 'nowrap' }}>Shailin Shukla (Director) - 9201135883</span>
+                  <span style={{ whiteSpace: 'nowrap' }}>Shalin Shukla (Director) - 9201135883</span>
                   <span style={{ whiteSpace: 'nowrap', marginTop: '0.25rem' }}>Anamika Shukla (Founder) - 7747013503</span>
                 </div>
               </li>
@@ -74,7 +73,10 @@ export default function Footer() {
               </li>
               <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', color: 'rgba(255,255,255,0.7)', marginTop: '0.5rem' }}>
                 <MapPin size={16} style={{ flexShrink: 0, marginTop: '4px' }} /> 
-                <span>1087-88 1st floor, Lalganga Currency Tower,<br/>VIP Square, Raipur (C.G)</span>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <span style={{ whiteSpace: 'nowrap' }}>1087-88 1st floor, Lalganga Currency Tower,</span>
+                  <span style={{ whiteSpace: 'nowrap' }}>VIP Square, Raipur (C.G)</span>
+                </div>
               </li>
             </ul>
           </div>

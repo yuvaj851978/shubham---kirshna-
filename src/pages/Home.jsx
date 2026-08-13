@@ -177,6 +177,7 @@ export default function Home() {
                 <option value="Commercial">Commercial</option>
                 <option value="Residential">Residential</option>
                 <option value="Highway">Highway</option>
+                <option value="Other">Other</option>
               </select>
             </motion.div>
             
@@ -201,8 +202,8 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <div style={{ position: 'relative', backgroundImage: 'url(/plot_bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(253, 253, 250, 0.85)', zIndex: 0 }}></div>
+      <div style={{ position: 'relative', backgroundImage: 'url(/plot_bg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(10, 30, 15, 0.75)', zIndex: 0 }}></div>
 
       {/* Featured Properties Section */}
       <section className="home-section" style={{ position: 'relative', zIndex: 10 }}>
@@ -216,8 +217,8 @@ export default function Home() {
             variants={fadeInUp}
           >
             <div>
-              <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '0.5rem' }}>Signature Collection</h2>
-              <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>An exclusive selection of our finest properties.</p>
+              <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '0.5rem', color: 'white' }}>Signature Collection</h2>
+              <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.1rem' }}>An exclusive selection of our finest properties.</p>
             </div>
             
             <button className="btn btn-outline" onClick={() => navigate('/properties')} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -288,7 +289,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
+      {/* About Us / What We Do Section */}
       <section className="home-section" style={{ position: 'relative', zIndex: 10 }}>
         <div className="container" style={{ position: 'relative', zIndex: 10 }}>
           <motion.div 
@@ -296,9 +297,23 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeInUp}
+            style={{ textAlign: 'center', marginBottom: '4rem' }}
           >
-            <h2 className="section-title">The Premium Land Standard</h2>
-            <p className="section-subtitle">We redefine land acquisition through uncompromising transparency, exclusive inventory, and seamless end-to-end service.</p>
+            <h2 className="section-title" style={{ color: 'white' }}>About Us & What We Do</h2>
+            <p className="section-subtitle" style={{ color: 'rgba(255,255,255,0.9)', maxWidth: '800px', margin: '0 auto', marginBottom: '2.5rem' }}>
+              We are Krishnam Realities, your trusted partner in premium land acquisition. We specialize in identifying, verifying, and securing prime agricultural, commercial, and residential plots that align with your strategic vision and investment goals.
+            </p>
+            
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap' }}>
+              <div style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(8px)', padding: '1.5rem 2.5rem', borderRadius: 'var(--radius-md)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <div style={{ fontSize: '2.5rem', fontWeight: '700', color: 'var(--accent-gold)', marginBottom: '0.25rem' }}>10+</div>
+                <div style={{ color: 'white', fontWeight: '500', fontSize: '1.1rem' }}>Years of Experience</div>
+              </div>
+              <div style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(8px)', padding: '1.5rem 2.5rem', borderRadius: 'var(--radius-md)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <div style={{ fontSize: '2.5rem', fontWeight: '700', color: 'var(--accent-gold)', marginBottom: '0.25rem' }}>50+</div>
+                <div style={{ color: 'white', fontWeight: '500', fontSize: '1.1rem' }}>Projects Delivered</div>
+              </div>
+            </div>
           </motion.div>
           
           <motion.div 
@@ -308,28 +323,28 @@ export default function Home() {
             viewport={{ once: true, margin: "-50px" }}
             variants={staggerContainer}
           >
-            <motion.div variants={fadeInUp} className="feature-card">
-              <div className="feature-icon-wrap">
+            <motion.div variants={fadeInUp} className="feature-card" style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(8px)', padding: '2rem', borderRadius: 'var(--radius-lg)', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <div className="feature-icon-wrap" style={{ background: 'var(--accent-gold)', color: 'white', border: 'none' }}>
                 <ShieldCheck size={32} />
               </div>
-              <h3 className="feature-title">Verified Heritage</h3>
-              <p style={{ color: 'var(--text-muted)' }}>Rigorous legal diligence ensures every land possesses a flawless title history.</p>
+              <h3 className="feature-title" style={{ color: 'white' }}>Verified Heritage</h3>
+              <p style={{ color: 'rgba(255,255,255,0.7)' }}>Rigorous legal diligence ensures every land possesses a flawless title history.</p>
             </motion.div>
             
-            <motion.div variants={fadeInUp} className="feature-card">
-              <div className="feature-icon-wrap">
+            <motion.div variants={fadeInUp} className="feature-card" style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(8px)', padding: '2rem', borderRadius: 'var(--radius-lg)', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <div className="feature-icon-wrap" style={{ background: 'var(--accent-gold)', color: 'white', border: 'none' }}>
                 <MapPin size={32} />
               </div>
-              <h3 className="feature-title">Strategic Corridors</h3>
-              <p style={{ color: 'var(--text-muted)' }}>Curated assets located strictly within high-appreciation, premium development zones.</p>
+              <h3 className="feature-title" style={{ color: 'white' }}>Strategic Corridors</h3>
+              <p style={{ color: 'rgba(255,255,255,0.7)' }}>Curated assets located strictly within high-appreciation, premium development zones.</p>
             </motion.div>
             
-            <motion.div variants={fadeInUp} className="feature-card">
-              <div className="feature-icon-wrap">
+            <motion.div variants={fadeInUp} className="feature-card" style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(8px)', padding: '2rem', borderRadius: 'var(--radius-lg)', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <div className="feature-icon-wrap" style={{ background: 'var(--accent-gold)', color: 'white', border: 'none' }}>
                 <Map size={32} />
               </div>
-              <h3 className="feature-title">Precision Mapping</h3>
-              <p style={{ color: 'var(--text-muted)' }}>Architect-grade topographical and dimensional data provided for absolute certainty.</p>
+              <h3 className="feature-title" style={{ color: 'white' }}>Precision Mapping</h3>
+              <p style={{ color: 'rgba(255,255,255,0.7)' }}>Architect-grade topographical and dimensional data provided for absolute certainty.</p>
             </motion.div>
           </motion.div>
         </div>
@@ -340,18 +355,28 @@ export default function Home() {
       {/* CTA Section */}
       <section className="home-section" style={{ position: 'relative', zIndex: 10 }}>
         <img src="/cta_bg.png" alt="Lush Green Landscape" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: -2 }} />
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(20, 83, 45, 0.75)', zIndex: -1 }}></div>
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'transparent', zIndex: -1 }}></div>
         
         <div className="container">
           <motion.div 
-            style={{ textAlign: 'center', color: 'white', maxWidth: '800px', margin: '0 auto', padding: '4rem 0' }}
+            style={{ 
+              textAlign: 'center', 
+              color: 'white', 
+              maxWidth: '800px', 
+              margin: '0 auto', 
+              padding: '3.5rem',
+              background: 'rgba(255, 255, 255, 0.05)',
+              backdropFilter: 'blur(8px)',
+              borderRadius: 'var(--radius-lg)',
+              border: '1px solid rgba(255, 255, 255, 0.1)'
+            }}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
           >
             <h2 className="section-title" style={{ marginBottom: '1.5rem', color: 'white' }}>Ready to Acquire?</h2>
-            <p style={{ fontSize: '1.25rem', marginBottom: '3rem', opacity: 0.9, lineHeight: 1.8 }}>
+            <p style={{ fontSize: '1.25rem', marginBottom: '3rem', fontWeight: 500, lineHeight: 1.8 }}>
               Engage with our acquisitions team today. We provide Agricultural, Industrial, Commercial, Residential, and Highway lands to align our exclusive portfolio with your strategic vision.
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>

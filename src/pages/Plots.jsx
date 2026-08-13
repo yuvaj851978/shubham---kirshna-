@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
 import { MapPin, Maximize, ArrowRight, Layers, Search, List } from 'lucide-react';
@@ -27,7 +27,7 @@ export default function Plots() {
     budget: ''
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     const params = new URLSearchParams(location.search);
     const locParam = params.get('location') || '';
     const typeParam = params.get('type') || '';
@@ -64,6 +64,51 @@ export default function Plots() {
            (filter.type === '' || plot.type === filter.type) &&
            budgetMatch && locationMatch;
   });
+
+  const hasAutoOpened = useRef(false);
+  const [countdown, setCountdown] = useState(null);
+
+  const buildWhatsAppMessage = () => {
+    let typeStr = filter.type ? `${filter.type} land` : 'property';
+    let locStr = filter.locationQuery ? ` near ${filter.locationQuery}` : '';
+    
+    let budgetStr = '';
+    if (filter.budget === '<500k') budgetStr = ' with a budget under ₹50 Lakhs';
+    else if (filter.budget === '500k-1m') budgetStr = ' with a budget between ₹50 Lakhs - ₹1 Crore';
+    else if (filter.budget === '>1m') budgetStr = ' with a budget above ₹1 Crore';
+    else if (filter.budget) budgetStr = ` with a budget of ${filter.budget}`;
+
+    let statusStr = filter.status ? ` (Status: ${filter.status})` : '';
+
+    return `Hi Krishnam Realities, I am looking for ${typeStr}${locStr}${budgetStr}${statusStr}. Can you help me find it?`;
+  };
+
+  useEffect(() => {
+    // Start countdown if they searched for something and got 0 results
+    if (filteredPlots.length === 0 && !hasAutoOpened.current && (filter.type || filter.locationQuery || filter.budget)) {
+      setCountdown(3);
+    } else if (filteredPlots.length > 0) {
+      hasAutoOpened.current = false;
+      setCountdown(null);
+    }
+  }, [filteredPlots.length, filter]);
+
+  useEffect(() => {
+    if (countdown === null) return;
+    
+    if (countdown > 0) {
+      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+      return () => clearTimeout(timer);
+    } else if (countdown === 0 && !hasAutoOpened.current) {
+      hasAutoOpened.current = true;
+      const msg = buildWhatsAppMessage();
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      const whatsappUrl = isMobile 
+        ? `https://wa.me/919201135883?text=${encodeURIComponent(msg)}`
+        : `https://web.whatsapp.com/send?phone=919201135883&text=${encodeURIComponent(msg)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+  }, [countdown, filter]);
 
   // Calculate center of India for default view
   const mapCenter = filteredPlots.length > 0 
@@ -171,12 +216,39 @@ export default function Plots() {
               <option value="Commercial">Commercial</option>
               <option value="Residential">Residential</option>
               <option value="Highway">Highway</option>
+              <option value="Other">Other</option>
             </select>
           </div>
         </div>
 
         <div className="plots-list">
-          {filteredPlots.map((plot, index) => (
+          {filteredPlots.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '4rem 2rem', background: 'white', borderRadius: 'var(--radius-lg)', gridColumn: '1 / -1', boxShadow: 'var(--shadow-sm)', border: '1px solid rgba(0,0,0,0.05)' }}>
+              <div style={{ background: 'rgba(37, 211, 102, 0.1)', width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', color: '#25D366' }}>
+                <Search size={40} />
+              </div>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--accent-dark)' }}>No properties found</h3>
+              <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
+                We couldn't find exactly what you're looking for right now, but we have exclusive off-market options available!
+              </p>
+              <a 
+                href={(() => {
+                  const msg = buildWhatsAppMessage();
+                  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                  return isMobile 
+                    ? `https://wa.me/919201135883?text=${encodeURIComponent(msg)}`
+                    : `https://web.whatsapp.com/send?phone=919201135883&text=${encodeURIComponent(msg)}`;
+                })()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#25D366', color: 'white', fontWeight: 'bold' }}
+              >
+                WhatsApp Your Requirement {countdown !== null && countdown > 0 ? `(${countdown}s)` : ''}
+              </a>
+            </div>
+          ) : (
+            filteredPlots.map((plot, index) => (
             <motion.div 
               key={plot.id}
               initial={{ opacity: 0, x: 20 }}
@@ -217,7 +289,7 @@ export default function Plots() {
                 </button>
               </div>
             </motion.div>
-          ))}
+          )))}
         </div>
       </div>
     </div>

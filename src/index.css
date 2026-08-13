@@ -107,17 +107,21 @@ button {
   color: var(--white);
 }
 
+.shadow-md {
+  box-shadow: var(--shadow-md);
+}
+
 /* Navbar */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1.25rem 0;
+  padding: 0.75rem 0;
   z-index: 1000;
   transition: var(--transition);
-  background: rgba(240, 253, 244, 0.92);
-  backdrop-filter: blur(10px);
+  background: rgba(215, 245, 225, 0.95); /* Slightly darker light green */
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(20, 83, 45, 0.08);
 }
 
@@ -588,7 +592,7 @@ button {
 
 /* Plot Detail Page */
 .plot-detail-page {
-  padding-top: 120px;
+  padding-top: 100px;
   padding-bottom: 4rem;
 }
 
@@ -1042,7 +1046,7 @@ button {
 
 /* Admin Page */
 .admin-page {
-  padding-top: 120px;
+  padding-top: 100px;
   padding-bottom: 4rem;
   max-width: 800px;
   margin: 0 auto;

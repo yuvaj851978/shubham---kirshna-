@@ -26,7 +26,10 @@ export default function WhatsAppButton() {
     }
   }
 
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(defaultMessage)}`;
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const whatsappUrl = isMobile 
+    ? `https://wa.me/${phoneNumber}?text=${encodeURIComponent(defaultMessage)}`
+    : `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(defaultMessage)}`;
 
   return (
     <a 
